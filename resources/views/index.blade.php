@@ -67,8 +67,8 @@
                     </div>
                     <form action="{{ route('insert') }}" method="POST" enctype="multipart/form-data">
                         @csrf
-                        {{-- <input type="hidden" name="agent_name" value="{{$agent_name}}">
-                        <input type="hidden" name="phone_name" value="{{$phone_number}}"> --}}
+                        <input type="hidden" name="agent_name" value="{{$agent_name}}">
+                        <input type="hidden" name="phone_name" value="{{$phone_number}}">
                         <div class="row my-3 g-5">                      
                             <div class="col-md-6">
                                 <div class="form-group d-inline-flex align-items-center justify-content-between w-100">

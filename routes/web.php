@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PagesController;
+use App\Http\Controllers\Backend\AdminPagesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,3 +21,13 @@ use App\Http\Controllers\PagesController;
 Route::get('/',[PagesController::class,'index']);
 Route::post('/',[PagesController::class,'insert'])->name('insert');
 Route::post('/delete/{id}',[PagesController::class,'delete'])->name('delete');
+
+//Admin  Routes
+
+Route::get('/crms',[AdminPagesController::class,'index'])->name('admin.index');
+
+
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

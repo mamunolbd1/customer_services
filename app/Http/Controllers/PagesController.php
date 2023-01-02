@@ -32,10 +32,10 @@ class PagesController extends Controller
         // ]);
         
         $info = new crm_details;
-        // $info->agent_name = $request->agent_name;
+        $info->agent_name = $request->agent_name;
         $info->name = $request->customer_name;
         $info->call_type = $request->call_type;
-        $info->phone_number = $request->phone_number;
+        $info->phone_number = $request->phone_name;
       
         $info->query_type = $request->query_type;
         $info->gender = $request->gender;
