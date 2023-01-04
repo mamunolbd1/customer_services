@@ -1,21 +1,20 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Frontend;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\crm_details;
 use Session;
 
-class PagesController extends Controller
+class CRMController extends Controller
 {
     public function index(Request $request){
-        // dd($request->all());
         $phone_number = $request->phone_number ?? '';
         $agent_name = $request->agent_name ?? '';
-
-
-        $info = crm_details::OrderBy('id','desc')->get();
-        return view('index',compact('info','phone_number','agent_name'));
+        $crms = crm_details::where('phone_number',$phone_number)->get();
+        $last_crm = crm_details::where('phone_number',$phone_number)->latest()->first();
+        return view('frontend.crms',compact('crms', 'last_crm', 'phone_number', 'agent_name'));
     }
     public function insert(Request $request){
         // dd($request->all());
