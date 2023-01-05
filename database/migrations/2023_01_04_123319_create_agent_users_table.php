@@ -19,8 +19,8 @@ class CreateAgentUsersTable extends Migration
             $table->string('email');
             $table->string('phone');
             $table->string('password');
-            $table->string('address');
-            $table->string('photo');
+            $table->text('address');
+            $table->string('photo')->nullable();
             $table->timestamps();
         });
     }

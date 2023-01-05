@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Frontend\PagesController;
 use App\Http\Controllers\Frontend\CRMController;
 use App\Http\Controllers\Backend\AdminPagesController;
+use App\Http\Controllers\Backend\UserPagesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,12 +29,18 @@ Route::post('/crms/insert',[CRMController::class,'insert'])->name('crms.insert')
 Route::post('/crms/delete/{id}',[CRMController::class,'delete'])->name('crms.delete');
 
 //Admin  Routes
+// Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function(){
 
-Route::get('/admin',[AdminPagesController::class,'index'])->name('admin.index');
-Route::get('/admin/crm_data',[AdminPagesController::class,'data'])->name('admin.crm_data');
-Route::get('/admin/export',[AdminPagesController::class,'export'])->name('admin.export');
-Route::post('/admin/export/post',[AdminPagesController::class,'exportPost'])->name('admin.export.post');
-Route::get('/admin/create',[AdminPagesController::class,'create'])->name('admin.create');
+    Route::get('admin/',[AdminPagesController::class,'index'])->name('admin.index');
+    Route::get('admin/crm_data',[AdminPagesController::class,'data'])->name('admin.crm_data');
+    Route::get('admin/export',[AdminPagesController::class,'export'])->name('admin.export');
+    Route::post('admin/export/post',[AdminPagesController::class,'exportPost'])->name('admin.export.post');
+    Route::get('admin/create',[AdminPagesController::class,'create'])->name('admin.create');
+
+    Route::post('admin/create',[UserPagesController::class,'insert'])->name('admin.create.user');
+
+// });
+
 
 
 

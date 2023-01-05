@@ -6,11 +6,15 @@
             <div class="col-md-12">
                 <div class="card card-success">
                     <div class="card-header">
+                        <h3 class="card-title d-flex align-items-center justify-content-center text-center">@if(Session::has('msg'))
+                            <h3 class="btn btn-success">{{ Session::get('msg') }}</h3>
+                            @endif
+                        </h3>
                         <h3 class="card-title d-flex align-items-center justify-content-center btn btn-success">Add User
                         </h3>
                     </div>
                     <div class="card-body">
-                      <form action="" method="POST" enctype="multipart/form-data" id="UserForm">
+                      <form action="{{ route('admin.create.user') }}" method="POST" enctype="multipart/form-data" id="UserForm">
                         @csrf
                         <div class="row">
                             <div class="col-md-6">
@@ -74,29 +78,6 @@
                                         <textarea class="form-control" name="address" rows="1" required onkeyup="inputValidation()"></textarea>
                                     </div>
                                 </div>
-                            @if(Auth::check())
-                                @if(auth()->user()->user_type == 'A')
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label class="form-label required"> User Type</label>
-                                        <select name="user_type" class="form-control select2" required onchange="filterUserType()">
-                                            <option value="A"> Admin</option>
-                                            <option value="O"> Buyer</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-md-6 d-none" id="shop">
-                                    <div class="form-group">
-                                        <label class="form-label"> Shop</label>
-                                        <select name="shop_id" class="form-control select2">
-                                            @foreach ($shops as $key=>$shop)
-                                                <option value="{{$shop->id}}"> {{$shop->name}}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                </div>
-                                @endif
-                            @endif
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="form-label"> Profile Photo</label>
