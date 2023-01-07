@@ -1,5 +1,7 @@
 @extends('backend.layouts.master')
 @section('content')
+@if (Auth::check())
+    @if (auth()->user()->user_type == 'admin')
 <main>
     <div class="container-fluid px-4 mt-4">
         <div class="row">
@@ -38,7 +40,7 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-md-6">
+                            {{-- <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="form-label required"> Phone</label>
                                     <div class="input-group mb-3">
@@ -51,20 +53,20 @@
                                         <input type="text" class="form-control" name="phone" required onkeyup="inputValidation()">
                                     </div>
                                 </div>
-                            </div>
+                            </div> --}}
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="form-label required"> Password</label>
                                     <div class="input-group mb-3">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text">
-                                                <i class="fa fa-lock"></i>
+                                                <i class="fa fa-lock" ></i>
                                             </span>
                                         </div>
-                                        <input type="password" class="form-control" name="password" required onkeyup="inputValidation()">
+                                        <input type="password" class="form-control" id="password" name="password" required onkeyup="inputValidation()">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text">
-                                                <i class="fa fa-eye-slash"></i>
+                                                <i class="fa fa-eye" id="togglePassword"></i>
                                             </span>
                                         </div>
                                     </div>
@@ -72,12 +74,12 @@
                             </div>
                         </div>
                         <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label class="form-label required"> Address </label>
-                                        <textarea class="form-control" name="address" rows="1" required onkeyup="inputValidation()"></textarea>
-                                    </div>
+                            {{-- <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="form-label required"> Address </label>
+                                    <textarea class="form-control" name="address" rows="1" required onkeyup="inputValidation()"></textarea>
                                 </div>
+                            </div> --}}
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="form-label"> Profile Photo</label>
@@ -100,17 +102,31 @@
             </div>
         </div>
 </main>
+@endif
+@endif
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js" integrity="sha512-STof4xm1wgkfm7heWqFJVn58Hm3EtS31XFaagaa8VMReCXAkQnJZ+jEy8PCC/iT18dFy95WcExNHFTqLyp72eQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 <script>
+    const togglePassword = document.querySelector("#togglePassword");
+    const password = document.querySelector("#password");
+
+    togglePassword.addEventListener("click", function () {
+        // toggle the type attribute
+        const type = password.getAttribute("type") === "password" ? "text" : "password";
+        password.setAttribute("type", type);
+        
+        // toggle the icon
+        this.classList.toggle("fa-eye-slash");
+    });
+
     $(document).ready(function(){
         filterDate();
     });
 
     function filterDate(){
-        requiredValidation();
+        inputValidation();
     };
-    function requiredValidation(){
+    function inputValidation(){
         var required_field_value_count = 0;
         $('#exportForm').find('input,textarea,select').filter('[required]:visible').each(function(){
             if($(this).val() == '' || $(this).val() == null){
@@ -125,4 +141,5 @@
         }
     };
 </script>
+
 @endsection

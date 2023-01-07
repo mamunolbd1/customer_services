@@ -1,5 +1,7 @@
 @extends('backend.layouts.master')
 @section('content')
+@if (Auth::check())
+    @if (auth()->user()->user_type == 'admin')
 <main>
     <div class="container-fluid px-4">
         <h1 class="mt-4">CRM Datatable</h1>
@@ -65,4 +67,6 @@
         </div>
     </div>
 </main>
+    @endif
+@endif
 @endsection

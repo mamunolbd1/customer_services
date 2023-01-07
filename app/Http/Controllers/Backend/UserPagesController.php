@@ -14,7 +14,7 @@ class UserPagesController extends Controller
         $user->name = $request->name;
         $user->email = $request->email;
         $user->phone = $request->phone;
-        $user->password = $request->password;
+        $user->password = bcrypt($request->password);
         $user->address = $request->address;
         $user->save();
 

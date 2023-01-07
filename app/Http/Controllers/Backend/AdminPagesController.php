@@ -9,7 +9,8 @@ use App\Exports\ExportUser;
 use Maatwebsite\Excel\Facades\Excel;
 use Auth;
 use DB;
-
+use App\Models\User;
+use Session;
 class AdminPagesController extends Controller
 {
     
@@ -38,9 +39,21 @@ class AdminPagesController extends Controller
         $data = crm_details::whereBetween('created_at', [ date('Y-m-d H:i:s', strtotime($request->from)), date('Y-m-d', strtotime($request->to)).' 11:59:59'])->get();
         return Excel::download(new ExportUser($data), 'crms.xlsx');
     }
-public function create(){
-    return view('backend.pages.create');
-}
+    public function create(){
+        return view('backend.pages.create');
+    }
+    public function store(Request $request){
+        $user = new User;
+        $user->name = $request->name;
+        $user->email = $request->email;
+        // $user->phone = $request->phone;
+        $user->password = bcrypt($request->password);
+        // $user->address = $request->address;
+        $user->save();
+
+        Session::flash('msg','A new user created Successfully');
+        return redirect()->back();
+    }
     // public function exportPost(Request $request){
     //     $crms = crm_details::where('agent_name', Auth::user()->id)->get();
     //     $fileName = 'crms.csv';

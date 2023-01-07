@@ -28,19 +28,20 @@ Route::get('/crms/create',[CRMController::class,'index'])->name('crms.index');
 Route::post('/crms/insert',[CRMController::class,'insert'])->name('crms.insert');
 Route::post('/crms/delete/{id}',[CRMController::class,'delete'])->name('crms.delete');
 
-//Admin  Routes
-// Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function(){
 
-    Route::get('admin/',[AdminPagesController::class,'index'])->name('admin.index');
-    Route::get('admin/crm_data',[AdminPagesController::class,'data'])->name('admin.crm_data');
-    Route::get('admin/export',[AdminPagesController::class,'export'])->name('admin.export');
-    Route::post('admin/export/post',[AdminPagesController::class,'exportPost'])->name('admin.export.post');
-    Route::get('admin/create',[AdminPagesController::class,'create'])->name('admin.create');
+Route::get('admin/',[AdminPagesController::class,'index'])->name('admin.index');
+Route::get('admin/crm_data',[AdminPagesController::class,'data'])->name('admin.crm_data');
+Route::get('admin/export',[AdminPagesController::class,'export'])->name('admin.export');
+Route::post('admin/export/post',[AdminPagesController::class,'exportPost'])->name('admin.export.post');
+Route::get('admin/create',[AdminPagesController::class,'create'])->name('admin.create');
+Route::post('admin/create/user',[AdminPagesController::class,'store'])->name('admin.create.user');
 
-    Route::post('admin/create',[UserPagesController::class,'insert'])->name('admin.create.user');
+// Route::post('admin/create',[UserPagesController::class,'insert'])->name('admin.create.user');
 
-// });
 
+Route::get('/test',function(){
+    return view('test');
+});
 
 
 
