@@ -1,4 +1,5 @@
 @extends('backend.layouts.master')
+@section('title','Create User')
 @section('content')
 <main>
     <div class="container-fluid px-4 mt-4">

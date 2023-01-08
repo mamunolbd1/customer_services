@@ -1,4 +1,5 @@
 @extends('backend.layouts.master')
+@section('title','Create User')
 @section('content')
 @if (Auth::check())
     @if (auth()->user()->user_type == 'admin')

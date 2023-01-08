@@ -54,6 +54,12 @@ class AdminPagesController extends Controller
         Session::flash('msg','A new user created Successfully');
         return redirect()->back();
     }
+
+    public function userlist(){
+        $info = User::OrderBy('id','desc')->get();
+        $users = User::latest()->get();
+        return view('backend.pages.userlist',compact('info','users'));
+    }
     // public function exportPost(Request $request){
     //     $crms = crm_details::where('agent_name', Auth::user()->id)->get();
     //     $fileName = 'crms.csv';

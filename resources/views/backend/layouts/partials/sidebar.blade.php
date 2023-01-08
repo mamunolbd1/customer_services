@@ -15,14 +15,30 @@
                 </a>
                 <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                     <nav class="sb-sidenav-menu-nested nav">
+                        @if (Auth::check())
+                        @if (auth()->user()->user_type == 'admin')
                         <a class="nav-link" href="{{ route('admin.crm_data') }}">Crm Data</a>
+                        @endif
+                        @endif
                         <a class="nav-link" href="{{ route('admin.export') }}">Report Download</a>
                     </nav>
                 </div>
+                @if (Auth::check())
+                @if (auth()->user()->user_type == 'admin')
                 <a class="nav-link" href="{{ route('admin.create') }}">
                     <div class="sb-nav-link-icon"><i class="fas fa-user"></i></div>
                     Create User
                 </a>
+                @endif
+                @endif
+                @if (Auth::check())
+                @if (auth()->user()->user_type == 'admin')
+                <a class="nav-link" href="{{ route('admin.userlist') }}">
+                    <div class="sb-nav-link-icon"><i class="fas fa-user"></i></div>
+                    User List
+                </a>
+                @endif
+                @endif
             </div>
         </div>
         <div class="sb-sidenav-footer">

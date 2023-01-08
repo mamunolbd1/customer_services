@@ -10,15 +10,15 @@ use Session;
 class UserPagesController extends Controller
 {
     public function insert(Request $request){
-        $user = new AgentUser;
-        $user->name = $request->name;
-        $user->email = $request->email;
-        $user->phone = $request->phone;
-        $user->password = bcrypt($request->password);
-        $user->address = $request->address;
-        $user->save();
+        // $user = new AgentUser;
+        // $user->name = $request->name;
+        // $user->email = $request->email;
+        // $user->phone = $request->phone;
+        // $user->password = bcrypt($request->password);
+        // $user->address = $request->address;
+        // $user->save();
 
-        Session::flash('msg','A new user created Successfully');
-        return redirect()->back();
+        // Session::flash('msg','A new user created Successfully');
+        // return redirect()->back();
     }
 }

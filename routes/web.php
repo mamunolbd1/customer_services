@@ -35,6 +35,7 @@ Route::get('admin/export',[AdminPagesController::class,'export'])->name('admin.e
 Route::post('admin/export/post',[AdminPagesController::class,'exportPost'])->name('admin.export.post');
 Route::get('admin/create',[AdminPagesController::class,'create'])->name('admin.create');
 Route::post('admin/create/user',[AdminPagesController::class,'store'])->name('admin.create.user');
+Route::get('admin/create/user',[AdminPagesController::class,'userlist'])->name('admin.userlist');
 
 // Route::post('admin/create',[UserPagesController::class,'insert'])->name('admin.create.user');
 
